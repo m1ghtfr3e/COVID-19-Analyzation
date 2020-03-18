@@ -3,13 +3,30 @@
 """
 Created on Wed Mar 18 12:39:38 2020
 
-@author: n0way
+@author: m1ghtfr3e
 """
 
 import pandas as pd
-import matplotlib.pyplot as plt
+import DataPipe
 
 
+
+
+# =============================================================================
+# part two of program
+# =============================================================================
+files = DataPipe.DataPipe()
+for file in files:
+    pandaFiles = pd.read_csv(file)
+
+
+
+
+
+
+# =============================================================================
+# part one of program
+# =============================================================================
 data = pd.read_json('timeseries.json')
 
 
@@ -53,11 +70,11 @@ def plotCountryEvolv(normalized_series):
           """)
     opt = input("choose option: ")
     if opt == '1':
-        normalized_series.plot(x='date', y='confirmed')
+        normalized_series.plot(x='date', y='confirmed', title='Confirmed cases')
     if opt == '2':
-        normalized_series.plot(x='date', y='recovered')
+        normalized_series.plot(x='date', y='recovered', title='Recovered cases')
     if opt == '3':
-        normalized_series.plot(x='date', y='deaths')
+        normalized_series.plot(x='date', y='deaths', title='Death cases')
 
 
 def relateConfirmedDeaths(normalized_series):
@@ -65,7 +82,8 @@ def relateConfirmedDeaths(normalized_series):
     visualizes relation between 
     confirmed cases and death
     """
-    normalized_series.plot.scatter(x='confirmed', y='deaths')
+    normalized_series.plot.scatter(x='confirmed', y='deaths', title='''Relation 
+                                   Confirmed and death cases''')
     
 # graph doesn't make sense
 # number of recovered > confirmed ?!
