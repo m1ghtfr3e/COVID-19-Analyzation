@@ -17,8 +17,10 @@ def getCountryNames(data):
     """
     prints out a countries list
     """
-    names = list(data.columns)   #sort alphabetically later
-    print(names)
+    names = list(data.columns)
+    names = sorted(names)
+    for x in names:
+        print(x)
 
 
 def getCountrySeries(data):
@@ -56,30 +58,65 @@ def plotCountryEvolv(normalized_series):
         normalized_series.plot(x='date', y='recovered')
     if opt == '3':
         normalized_series.plot(x='date', y='deaths')
-        
+
+
+def relateConfirmedDeaths(normalized_series):
+    """
+    visualizes relation between 
+    confirmed cases and death
+    """
+    normalized_series.plot.scatter(x='confirmed', y='deaths')
+    
+# graph doesn't make sense
+# number of recovered > confirmed ?!
+def relateAll(normalized_series):
+    """
+    brings all columns to one
+    area graph, not too under-
+    standable with small differences
+    """
+    normalized_series.plot.area()
+
+    
 def main():
+    
     print("""
           Welcome. This is program is analyzing
           and mainly visualizing datasets about
           the current COVID-19 (Corona Virus).
     """)
+    
     print("""
           There are several options to choose, 
           mostly accesible with the country name
           and the index number of options.
     """)
     
-    countryList = input("""Do you want to have an overview of country names?
-                        (y/n):  """)
-    if countryList == 'y':
-        getCountryNames(data)
 
-    if countryList == 'n':
-        main()
+    print("Here is an overview of country names:")
+    getCountryNames(data)
+        
     
-    print("You can access data for a specific country with its name.")
-    getCountrySeries(data)
-    plotCountryEvolv(normalized_series)
+    print("\n\nYou can access data for a specific country with its name.\n")
+    
+    getCountrySeries(data)  # defines country
+    
+    while True:
+        option = input(""" Which graph you want to access:
+            1) Evolution of cases after dates and category
+            2) Relation between confirmed cases and deaths
+            3) Relation between all 
+                \n""")
+        
+        if option == '1':
+            plotCountryEvolv(normalized_series)
+        if option == '2':
+            relateConfirmedDeaths(normalized_series)
+        if option == '3':
+            relateAll(normalized_series)
+        else:
+            print("Program is stopping.")
+            return False
 
 
 if __name__ == '__main__':
