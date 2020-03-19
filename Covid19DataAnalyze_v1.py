@@ -8,20 +8,26 @@ Created on Wed Mar 18 12:39:38 2020
 
 import pandas as pd
 import DataPipe
-
-
+from pandas.io.json import json_normalize
+import json
 
 
 # =============================================================================
 # part two of program
 # =============================================================================
-files = DataPipe.DataPipe()
-for file in files:
-    pandaFiles = pd.read_csv(file)
+files_csv = DataPipe.DataPipeCSV()
+for file in files_csv:
+    pandaFiles_csv = pd.read_csv(file)
+    pandaFiles_csv = pandaFiles_csv.fillna(0)
 
-
-
-
+"""
+files_json = DataPipe.DataPipeJSON_meta()
+for f in files_json:
+    with open(f) as f:
+        metaFiles = json.load(f)
+        #for meta in metaFiles:
+        metaFrame = pd.DataFrame.from_dict(meta)
+"""
 
 
 # =============================================================================
@@ -59,7 +65,31 @@ def getCountrySeries(data):
     ##print(normalized_series)
     return country_series
     return normalized_series # flattened list of series (pd.DataFrame)
+
+
+def getCountryInfo(normalized_series): # data: Series | date format: yyyy/m/d(d)
+    """
+    user can enter country and choose
+    a date; function will return
+    infos belonging to input
+    """
+    date = input("choose a date [yyyy-m-d(d)]: ")
+    normalized_series = normalized_series.set_index('date')
+    # date_info = normalized_series.at[date, confirmed]
     
+    opt = input("Choose (1)confirmed / (2)recovered / (3)deaths: ")
+    if opt == '1':
+        date_info = normalized_series.at[date, 'confirmed']
+        print("\n There are {} confirmed cases on {}".format(date_info, date))
+    if opt == '2':
+        date_info = normalized_series.at[date, 'recovered']
+        print("\n There are {} recovered cases on {}".format(date_info, date))
+    if opt == '3':
+        date_info = normalized_series.at[date, 'deaths']
+        print("\n There are {} death cases on {}".format(date_info, date))
+
+    return date_info
+        
 
 def plotCountryEvolv(normalized_series):
     print("""
@@ -123,7 +153,8 @@ def main():
         option = input(""" Which graph you want to access:
             1) Evolution of cases after dates and category
             2) Relation between confirmed cases and deaths
-            3) Relation between all 
+            3) Relation between all
+            4) Get Numbers of cases on a specific date
                 \n""")
         
         if option == '1':
@@ -132,9 +163,13 @@ def main():
             relateConfirmedDeaths(normalized_series)
         if option == '3':
             relateAll(normalized_series)
-        else:
+        if option == '4':
+            getCountryInfo(normalized_series)
+
+        continue
+        """else:
             print("Program is stopping.")
-            return False
+            return False"""
 
 
 if __name__ == '__main__':
