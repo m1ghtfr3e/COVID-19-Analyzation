@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Mar 18 12:39:38 2020
+Created on Mar2020
 
 @author: m1ghtfr3e
 """
@@ -13,7 +13,7 @@ import sys
 # =============================================================================
 # part one of program
 # =============================================================================
-data = pd.read_json('timeseries_319.json')
+data = pd.read_json('timeseries.json')    # enter here name of json file
 #data = up.updateFile()
 
 def getCountryNames(data):
