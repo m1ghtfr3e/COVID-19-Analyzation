@@ -10,3 +10,7 @@ Datasets are from https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019
 
 The main program which is in the master branch now, uses the 'timeseries.json' data from the second link
 above. Download it and make sure it is in the same directory as the program so it can run.
+
+I am running this program in Spyder3. If you have Anaconda you can use it too or run it in jupyter.
+Make sure that Python3 and the pandas module is installed.
+
