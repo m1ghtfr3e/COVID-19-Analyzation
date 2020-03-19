@@ -7,13 +7,13 @@ Created on Wed Mar 18 12:39:38 2020
 """
 
 import pandas as pd
-
+#import updatejson as up
 
 # =============================================================================
 # part one of program
 # =============================================================================
-data = pd.read_json('timeseries.json')
-
+data = pd.read_json('timeseries_319.json')
+#data = up.updateFile()
 
 def getCountryNames(data):
     """
@@ -66,17 +66,21 @@ def getCountryInfo(normalized_series): # data: Series | date format: yyyy/m/d(d)
     # date_info = normalized_series.at[date, confirmed]
     
     opt = input("Choose (1)confirmed / (2)recovered / (3)deaths: ")
-    if opt == '1':
-        date_info = normalized_series.at[date, 'confirmed']
-        print("\n There are {} confirmed cases on {}".format(date_info, date))
-    if opt == '2':
-        date_info = normalized_series.at[date, 'recovered']
-        print("\n There are {} recovered cases on {}".format(date_info, date))
-    if opt == '3':
-        date_info = normalized_series.at[date, 'deaths']
-        print("\n There are {} death cases on {}".format(date_info, date))
-
-    return date_info
+    try:
+        if opt == '1':
+            date_info = normalized_series.at[date, 'confirmed']
+            print("\n There are {} confirmed cases on {}".format(date_info, date))
+        if opt == '2':
+            date_info = normalized_series.at[date, 'recovered']
+            print("\n There are {} recovered cases on {}".format(date_info, date))
+        if opt == '3':
+            date_info = normalized_series.at[date, 'deaths']
+            print("\n There are {} death cases on {}".format(date_info, date))
+    except KeyError:
+        print(KeyError)
+        print("Maybe you entered date in a wrong format.")
+    
+    return
         
 
 def plotCountryEvolv(normalized_series):
@@ -100,8 +104,9 @@ def relateConfirmedDeaths(normalized_series):
     visualizes relation between 
     confirmed cases and death
     """
-    normalized_series.plot.scatter(x='confirmed', y='deaths', title='''Relation 
-                                   Confirmed and death cases''')
+    normalized_series.plot.scatter(x='confirmed', y='deaths', title='''
+                                   Relation Confirmed and death cases
+                                   ''')
     
 
 # graphs doesn't make too much sense when number range is too big
@@ -114,6 +119,25 @@ def relateAll(normalized_series):
     normalized_series.plot(x='date', y=['confirmed', 'recovered',
                                         'deaths'], kind='bar', title='Overview')
     #normalized_series.plot(x=date_list, y=[c, r, d], kind='bar')
+
+# FIX THIS
+def worldwideOverview(data):  # NOT working now
+    """
+    plot worldwide data
+    """
+    countries = []
+    for d in data:
+        countries.append(d)
+    
+    #worldwide = data[countries]
+    #worldwide = []
+        for c in countries:
+            worldwide = data[c]
+    
+            for w in worldwide:
+                print(worldwide)
+    
+    dates = []
     
     
 def main():
@@ -144,7 +168,7 @@ def main():
         option = input(""" Which graph you want to access:
             1) Evolution of cases after dates and category
             2) Relation between confirmed cases and deaths
-            3) Relation between all (not recommended yet)
+            3) Relation between all
             4) Get Numbers of cases on a specific date
                 \n""")
         
@@ -161,4 +185,5 @@ def main():
 
 
 if __name__ == '__main__':
+    #worldwideOverview(data)
     main()
