@@ -12,6 +12,6 @@ def DataPipe():
     """
     getting daily datasets (55, in csv format)
     """
-    path = '/home/n0way/PythonEnv/Python/Coivd-19/datasets/csse_covid_19_daily_reports'
+    path = '~/datasets/csse_covid_19_daily_reports' #enter your path here
     files = glob.glob(path + '/*.csv')
     return files
