@@ -10,7 +10,7 @@ import pandas as pd
 import glob
 
 def updateFile():
-    path = "/home/n0way/PythonEnv/Python/Coivd-19/progr"
+    path = "/.../.."                      # enter your actual working directory here
     allfiles = glob.glob(path + "/*.json")
 
     Data = []
