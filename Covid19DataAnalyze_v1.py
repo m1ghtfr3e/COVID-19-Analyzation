@@ -7,27 +7,6 @@ Created on Wed Mar 18 12:39:38 2020
 """
 
 import pandas as pd
-import DataPipe
-from pandas.io.json import json_normalize
-import json
-
-
-# =============================================================================
-# part two of program
-# =============================================================================
-files_csv = DataPipe.DataPipeCSV()
-for file in files_csv:
-    pandaFiles_csv = pd.read_csv(file)
-    pandaFiles_csv = pandaFiles_csv.fillna(0)
-
-"""
-files_json = DataPipe.DataPipeJSON_meta()
-for f in files_json:
-    with open(f) as f:
-        metaFiles = json.load(f)
-        #for meta in metaFiles:
-        metaFrame = pd.DataFrame.from_dict(meta)
-"""
 
 
 # =============================================================================
@@ -55,8 +34,17 @@ def getCountrySeries(data):
     """
     
     country = input("choose a country: ")
-    country_series = data[country]
     
+    while True:     # exception handling if there is unknown input
+        try:
+            country_series = data[country]
+            break
+        except KeyError:
+            print("Unknown. Please check the list and reenter.")
+            getCountrySeries(data)
+            return False
+            
+        
     global normalized_series
     normalized_series = pd.json_normalize(data=country_series)
     
@@ -146,14 +134,15 @@ def main():
         
     
     print("\n\nYou can access data for a specific country with its name.\n")
-    
-    getCountrySeries(data)  # defines country
-    
+
+
     while True:
+        getCountrySeries(data)  # defines country
+        
         option = input(""" Which graph you want to access:
             1) Evolution of cases after dates and category
             2) Relation between confirmed cases and deaths
-            3) Relation between all
+            3) Relation between all (not recommended yet)
             4) Get Numbers of cases on a specific date
                 \n""")
         
@@ -165,11 +154,9 @@ def main():
             relateAll(normalized_series)
         if option == '4':
             getCountryInfo(normalized_series)
-
-        continue
-        """else:
-            print("Program is stopping.")
-            return False"""
+        else:
+            False
+            
 
 
 if __name__ == '__main__':
