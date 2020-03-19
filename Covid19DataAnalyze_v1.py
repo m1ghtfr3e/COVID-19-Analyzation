@@ -103,16 +103,18 @@ def relateConfirmedDeaths(normalized_series):
     normalized_series.plot.scatter(x='confirmed', y='deaths', title='''Relation 
                                    Confirmed and death cases''')
     
-# graph doesn't make sense
-# number of recovered > confirmed ?!
+
+# graphs doesn't make too much sense when number range is too big
 def relateAll(normalized_series):
     """
     brings all columns to one
     area graph, not too under-
     standable with small differences
     """
-    normalized_series.plot.area()
-
+    normalized_series.plot(x='date', y=['confirmed', 'recovered',
+                                        'deaths'], kind='bar', title='Overview')
+    #normalized_series.plot(x=date_list, y=[c, r, d], kind='bar')
+    
     
 def main():
     
@@ -156,7 +158,6 @@ def main():
             getCountryInfo(normalized_series)
         else:
             False
-            
 
 
 if __name__ == '__main__':
