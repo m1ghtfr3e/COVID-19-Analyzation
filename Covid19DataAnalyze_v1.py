@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mar2020
+Created on Wed Mar 18 12:39:38 2020
 
 @author: m1ghtfr3e
 """
 
 import pandas as pd
 import sys
-#import updatejson as up
+
 
 # =============================================================================
 # part one of program
 # =============================================================================
-data = pd.read_json('timeseries.json')    # enter here name of json file
+data = pd.read_json('timeseries.json')   #enter here name of json file
 #data = up.updateFile()
 
 def getCountryNames(data):
@@ -38,26 +38,19 @@ def getCountrySeries(data):
     if country == 'exit':
         sys.exit()
     else:
-        return
-    
-    while True:     # exception handling if there is unknown input
+            # exception handling if there is unknown input
         try:
             country_series = data[country]
-            break
+            global normalized_series
+            normalized_series = pd.json_normalize(data=country_series)
+            return normalized_series # flattened list of series (pd.DataFrame)
+
         except KeyError:
             print("Unknown. Please check the list and reenter.")
             getCountrySeries(data)
-            return False
-            
-        
-    global normalized_series
-    normalized_series = pd.json_normalize(data=country_series)
-    
-    #normalized_series.plot(x='date', y='confirmed')
-    
-    ##print(normalized_series)
-    return country_series
-    return normalized_series # flattened list of series (pd.DataFrame)
+
+    return normalized_series
+
 
 
 def getCountryInfo(normalized_series): # data: Series | date format: yyyy/m/d(d)
@@ -121,6 +114,7 @@ def relateConfirmedRecovered(normalized_series):
     normalized_series.plot(x='confirmed', y='recovered', title='''
                            Relation: confirmed and recovered cases''')
 
+
 # graphs doesn't make too much sense when number range is too big
 def relateAll(normalized_series):
     """
@@ -154,7 +148,7 @@ def worldwideOverview(data):  # NOT working now
     
     
 def main():
-
+    #getCountrySeries(data)
     while True:
         getCountrySeries(data)  # defines country
         
