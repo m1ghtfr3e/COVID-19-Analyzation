@@ -8,7 +8,7 @@ Created on Fri Mar 20 09:50:14 2020
 
 import pandas as pd
 import sys
-
+import matplotlib.pyplot as plt
 
 # =============================================================================
 # part one of program
@@ -98,12 +98,17 @@ def plotCountryEvolv(normalized_series, country):
     if opt == '1':
         normalized_series.plot(x='date', y='confirmed', title='''
                                Confirmed cases in {}'''.format(country))
+        plt.show()
+
     if opt == '2':
         normalized_series.plot(x='date', y='recovered', title='''
                                Recovered cases in {}'''.format(country))
+        plt.show()
+
     if opt == '3':
         normalized_series.plot(x='date', y='deaths', title=''''
                                Death cases in {}'''.format(country))
+        plt.show()
 
 
 def relateConfirmedDeaths(normalized_series, country):
@@ -114,6 +119,7 @@ def relateConfirmedDeaths(normalized_series, country):
     normalized_series.plot(x='confirmed', y='deaths', title='''
                                    Relation: confirmed and death cases
                                              in {}'''.format(country))
+    plt.show()
 
 
 
@@ -124,7 +130,7 @@ def relateConfirmedRecovered(normalized_series, country):
     normalized_series.plot(x='confirmed', y='recovered', title='''
                            Relation: confirmed and recovered cases
                                      in {}'''.format(country))
-
+    plt.show()
 
 # graphs doesn't make too much sense when number range is too big
 def relateAll(normalized_series, country):
@@ -137,7 +143,7 @@ def relateAll(normalized_series, country):
                                         'deaths'], kind='bar', title='''
                             Overview in {}'''.format(country))
     #normalized_series.plot(x=date_list, y=[c, r, d], kind='bar')
-    
+    plt.show()
 
 # FIX THIS
 def worldwideOverview(data):  # NOT working now
