@@ -23,9 +23,7 @@ If you run the Web Crawler it will download the needed file (timeseries.json) fo
 
 
 ---
-layout: post
 title: Examples of the program
-comments: true
 category: blog
 ---
 
