@@ -23,3 +23,4 @@ If you run the Web Crawler it will download the needed file (timeseries.json) fo
 
 
 ![](https://github.com/m1ghtfr3e/COVID-19-Analyzation/blob/img/conf-dead.jpg)
+![](https://github.com/m1ghtfr3e/COVID-19-Analyzation/blob/img/conf-rec-CN.jpeg)
