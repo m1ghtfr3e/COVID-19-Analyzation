@@ -2,8 +2,3 @@ theme: jekyll-theme-slate
 name: m1ghtfr3e
 ---
 
-text: See some examples:
-image: http://github.com/m1ghtfr3e/COVID-19-Analyzation/blob/img/conf-dead.jpg
-image: /github.com/m1ghtfr3e/COVID-19-Analyzation/blob/img/conf-rec-CN.jpeg
-
-<img src="http://github.com/m1ghtfr3e/COVID-19-Analyzation/blob/img/conf-dead.jpg" style="display: block; margin: auto;" />
