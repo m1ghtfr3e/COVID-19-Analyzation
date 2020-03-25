@@ -22,3 +22,4 @@ Also on Linux the program (Version 1.1) works in your terminal, so you don't nee
 If you run the Web Crawler it will download the needed file (timeseries.json) for you.
 
 
+![](https://github.com/m1ghtfr3e/COVID-19-Analyzation/blob/img/conf-dead.jpg)
