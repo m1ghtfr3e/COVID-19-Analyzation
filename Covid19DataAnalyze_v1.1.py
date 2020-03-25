@@ -9,12 +9,17 @@ Created on Fri Mar 20 09:50:14 2020
 import pandas as pd
 import sys
 import matplotlib.pyplot as plt
+import covid_json_crawler
 
 # =============================================================================
 # part one of program
 # =============================================================================
 data = pd.read_json('timeseries_324.json')   #enter here name of json file
 #data = up.updateFile()
+
+def updateData():
+    covid_json_crawler.update()
+
 
 def getCountryNames(data):
     """
@@ -168,6 +173,7 @@ def worldwideOverview(data):  # NOT working now
 def main():
     #getCountrySeries(data)
     while True:
+       
         getCountrySeries(data)  # defines country
         
         option = input(""" Which graph you want to access:
@@ -217,6 +223,18 @@ if __name__ == '__main__':
     
     ([program coded by m1ghtfr3e])
     """)
+    start = input("""
+Before we start, you have the option to let the program
+update the file, so you can have the most actual 
+dataset available. You want? (y/n): """)
+
+
+    if start == 'y':
+        updateData()
+        
+    #else:
+     #   return data
+    
     
 
     print("Here is an overview of country names:")
