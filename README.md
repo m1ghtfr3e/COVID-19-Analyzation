@@ -7,9 +7,9 @@ If you want to look through the process, just check the other branches.
 ##### Feel free to contribute.
 
 Datasets are from:
-https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset
-&
-https://pomber.github.io/covid19/timeseries.json
+[Kaggle Dataset](https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset)
+##### &
+[Pomber Dataset](https://pomber.github.io/covid19/timeseries.json)
 
 
 
