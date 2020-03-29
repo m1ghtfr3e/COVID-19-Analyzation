@@ -2,6 +2,8 @@
 
 import wget
 
-url = "https://pomber.github.io/covid19/timeseries.json"
+def updateFile():
 
-wget.download(url, 'timeseries.json')
+    url = "https://pomber.github.io/covid19/timeseries.json"
+
+    wget.download(url, 'timeseries.json')
