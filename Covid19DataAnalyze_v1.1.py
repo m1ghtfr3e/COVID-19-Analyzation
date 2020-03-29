@@ -6,19 +6,29 @@ Created on Fri Mar 20 09:50:14 2020
 @author: m1ghtfr3e
 """
 
+import os
+import os.path
 import pandas as pd
 import sys
 import matplotlib.pyplot as plt
-import covid_json_crawler
+import covid_json_crawler as crawl
+
 
 # =============================================================================
 # part one of program
 # =============================================================================
-data = pd.read_json('timeseries_324.json')   #enter here name of json file
-#data = up.updateFile()
 
-def updateData():
-    covid_json_crawler.update()
+# checks if (older) data exists and deletes
+
+if os.path.isfile('timeseries.json'):
+    os.remove('timeseries.json')
+else:
+    pass
+    
+
+# gets the new file
+data = crawl.updateFile()
+data = pd.read_json('timeseries.json')
 
 
 def getCountryNames(data):
@@ -222,20 +232,7 @@ if __name__ == '__main__':
     https://pomber.github.io/covid19/timeseries.json
     
     ([program coded by m1ghtfr3e])
-    """)
-    start = input("""
-Before we start, you have the option to let the program
-update the file, so you can have the most actual 
-dataset available. You want? (y/n): """)
-
-
-    if start == 'y':
-        updateData()
-        
-    #else:
-     #   return data
-    
-    
+    """)        
 
     print("Here is an overview of country names:")
     getCountryNames(data)
