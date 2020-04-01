@@ -17,7 +17,7 @@ Datasets are from:
 
 
 ### How it works:
-1) Download 'Covid19DataAnalyze_v2.py' and 'covid_json_crawler.py' and make sure that they are in the
+1) Download 'Covid19DataAnalyze_v2.py' and 'covid_json_crawler.py' (from master branch) and make sure that they are in the
    same directory together. 
 2) Open a terminal and type 'python Covid19DataAnalyze_v1.2.py'
    The program is running now and is ready to use.
