@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Mar 20 09:50:14 2020
-
 @author: m1ghtfr3e
 """
 
@@ -80,7 +79,7 @@ def getCountryInfo(normalized_series, country):
     normalized_series = normalized_series.set_index('date')
     # date_info = normalized_series.at[date, confirmed]
     
-    opt = input("Choose (1)confirmed / (2)recovered / (3)deaths: ")
+
     try:
 		
 
@@ -88,12 +87,10 @@ def getCountryInfo(normalized_series, country):
         inf_rec = normalized_series.at[date, 'recovered']
         inf_dead = normalized_series.at[date, 'deaths']
         print(f"""
-The numbers in {country} on date: {date} are:
-
+The numbers in {country} on {date} are:
 confirmed cases:  {inf_conf}
 recovered cases:  {inf_rec}
 death cases:      {inf_dead}
-
 """)
 
     except KeyError:
