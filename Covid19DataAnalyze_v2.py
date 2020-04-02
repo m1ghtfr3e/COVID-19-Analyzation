@@ -30,7 +30,8 @@ if start == 'y':
         print("\n Loading Data \n")
         data = crawl.updateFile()        # downloads new dataset
     else:
-        pass
+        print("\n Loading Data \n")
+        data = crawl.updateFile() 
 else:
     print("If there is no data available the program won't work, otherwise\
           it will start now.")
